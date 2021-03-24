@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Modern Software Development</title>
+
+		<meta name="description" content="A Brief Overview of Software Development Best Practices">
+		<meta name="author" content="Shawn Mittal">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section id="title">
+					<h1>Modern Software Development</h1>
+					<h4>A Brief Overview of Software Development Best Practices</h4>
+					<p>
+						<small>Created by <a href="http://shawnmittal.com">Shawn Mittal</a><br>
+							Sr. Lead Data Scientist<br>
+							Booz Allen Hamilton</small>
+					</p>
+				</section>
+
+				<section id="agenda">
+					<h2>Agenda</h2>
+						<ul>
+							<li>Definitions</li>
+								<small>
+									<ul>
+										<li><a href="#/definitions_general">General</a></li>
+										<li><a href="#/definitions_containers">Containers</a></li>
+										<li><a href="#/definitions_container_orchestration">Container Orchestration</a></li>
+									</ul>
+								</small>
+							<li>Waterfall</li>
+							<li>Agile</li>
+							<li>DevOps</li>
+							<li>Containerization</li>
+						</ul>
+				</section>
+
+				<section id="definitions">
+					<section>
+						<h2>Definitions</h2>
+					</section>
+
+					<section id="definitions_general">
+						<h2>General</h2>
+						<small>
+							<ul>
+								<li><strong><u>Continuous Integration (CI)</u></strong> – Process of integrating code into a shared repository on a continual basis. Often includes testing the code as well.</li><br>
+								<li><strong><u>Continuous Deployment (CD)</u></strong> – Process of deploying code upon integration of new code into a shared repository after automated testing.</li><br>
+								<li><strong><u>Version Control</u></strong> – System that records changes to a file or set of files over time and allows recall of specific versions later on.</li><br>
+								<li><strong><u>Git</u></strong> – An open source version control system designed to handle software development projects.</li><br>
+							</ul>
+						</small>
+					</section>
+
+					<section id="definitions_containers">
+						<h2>Containers</h2>
+						<small>
+							<ul>
+								<li><strong><u>Container</u></strong> – A standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.</li><br>
+								<li><strong><u>Container Image</u></strong> – Unchangeable (immutable) file that contains source code, libraries, dependencies, tools, and other files needed for an application to run.</li><br>
+								<li><strong><u>Container Runtime</u></strong> – System that is responsible for all the parts of running a container that isn't actually running the program itself.</li><br>
+								<li><strong><u>Open Container Initiative (OCI)</u></strong> – Open governance body that maintains two specifications: the container runtime spec, and the container image specification.</li><br>
+							</ul>
+						</small>
+					</section>
+	
+					<section id="definitions_container_orchestration">
+						<h2>Container Orchestration</h2>
+						<small>
+							<ul>
+								<li><strong><u>Container</u></strong> – A standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.</li><br>
+								<li><strong><u>Container Image</u></strong> – Unchangeable (immutable) file that contains source code, libraries, dependencies, tools, and other files needed for an application to run.</li><br>
+								<li><strong><u>Container Runtime</u></strong> – System that is responsible for all the parts of running a container that isn't actually running the program itself.</li><br>
+							</ul>
+						</small>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h2>Waterfall</h2>
+						<img src="assets/waterfall_development.png">
+					</section>
+					<section>
+						<ul>
+							<li>Traditionally, software development was planned, managed, and executed using the waterfall methodology.</li><br>
+							<li>Multiple criticisms of the waterfall approach include:</li>
+							<small>
+								<ul>
+									<li>Requirements often change during development. Waterfall is not agile enough to accommodate shift in requirements.</li>
+									<li>The design phase may not sufficiently address the requirements as intended by the client until implementation has already started.</li>
+								</ul><br>
+							</small>
+
+							<li>Waterfall approach may still be suited for when requirements and scope are fixed.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Tabular Tables</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Value</th>
+								<th>Quantity</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Apples</td>
+								<td>$1</td>
+								<td>7</td>
+							</tr>
+							<tr>
+								<td>Lemonade</td>
+								<td>$2</td>
+								<td>18</td>
+							</tr>
+							<tr>
+								<td>Bread</td>
+								<td>$3</td>
+								<td>2</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				slideNumber: true,
+				transition: 'slide',
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+
+		</script>
+
+	</body>
+</html>
