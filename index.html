@@ -153,6 +153,124 @@
 					<img src="assets/kubernetes_diagram.png">
 				</section>
 
+				<section>
+					<section>
+						<h2>Lets Build an App</h2>
+					</section>
+					<section>
+						<h2>Plan</h2>
+						<p>
+							What do we want our application to do?
+						</p>
+						<p>
+							How about a website that tells us we're special? We will use Flask, a Python framework for building lightweight websites.
+						</p>
+					</section>
+					<section>
+						<h2>Code/Create</h2>
+						<p>
+							Let's write the app. We've written a hello world function that returns a string of text.
+						</p>
+						<pre class="python"><code data-trim data-noescape>
+							from flask import Flask
+							app = Flask(__name__)
+
+							@app.route('/')
+							def hello_world():
+								return "Hey you, you're special!"
+
+							if __name__ == '__main__':
+								app.run()
+						</code></pre>
+					</section>
+					<section>
+						<p>
+							Now we need to write a test for our application. Since it's not doing anything complex, we'll just check to see that the application is returning an http 200 response code.
+						</p>
+						<pre class="python"><code data-trim data-noescape>
+							import pytest
+							from app import app
+
+							@pytest.fixture
+							def flask_app():
+								yield app.app
+
+							@pytest.fixture
+							def client(flask_app):
+								return flask_app.test_client()
+
+							def test_index(flask_app, client):
+								res = client.get('/')
+								assert res.status_code == 200
+						</code></pre>
+					</section>
+					<section>
+						<p>
+						<small>
+							While we don't have to, let's go ahead and containerize our web application. We'll write a Dockerfile to define what the container image should contain. We also need to make sure we expose the correct port so that the outside world can access our web application through the container.
+						</small>
+						</p>
+						<pre class="text"><code data-trim data-noescape>
+							FROM tiangolo/uwsgi-nginx:python3.8-alpine
+
+							# Set environment information
+							ENV LISTEN_PORT=5000
+							EXPOSE 5000
+							ENV UWSGI_INI uwsgi.ini
+
+							# Install python packages
+							WORKDIR /app
+							COPY requirements.txt .
+							RUN pip3 install --upgrade pip && \
+								pip3 install --no-cache-dir -r ./requirements.txt
+
+							# Add web application to image
+							COPY . .
+						</code></pre>
+					</section>
+					<section>
+						<p>
+							The crux of CI/CD is automation. In order to automate the build, test, deploy process, GitHub provides a CI/CD capability called GitHub Actions that allows us to define steps in our pipeline via YAML.
+						</p>
+						<pre class="yaml"><code data-trim data-noescape>
+							name: CI
+
+							on:
+							push:
+								branches: [ main ]
+							
+							jobs:
+							build:
+								runs-on: ubuntu-latest
+
+								steps:
+								- name: Checkout
+								  uses: actions/checkout@v2
+								# not using standard actions/python@v2. causes dependency problems with some packages
+								- name: Install Python and Dependencies
+								  run: |
+									sudo apt-get update
+									sudo apt-get install python3.8 python3-pip
+									sudo rm /usr/bin/python
+									sudo ln -s /usr/bin/python3.8 /usr/bin/python
+								- name: Run Linter for Python Code
+								  run: |
+									pip3 install flake8
+									sudo apt-get install flake8
+									# stop the build if there are Python syntax errors or undefined names
+									flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+									# exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+									flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistic
+								- name: Build Docker Container
+								  run: |
+									cd sample_webapp
+									docker build -t shawnmittal/sample-webapp:latest .
+								- name: Run Tests
+								  run: docker run -t shawnmittal/sample-webapp:latest python3 -m pytest
+						</code></pre>
+					</section>
+				</section>
+
 			</div>
 
 		</div>
