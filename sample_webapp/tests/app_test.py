@@ -4,7 +4,7 @@ from app import main
 
 @pytest.fixture
 def flask_app():
-    yield main
+    yield main.app
 
 @pytest.fixture
 def client(flask_app):
