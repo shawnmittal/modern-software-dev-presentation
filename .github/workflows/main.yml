@@ -27,6 +27,8 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistic
     - name: Build Docker Container
-      run: docker build -t shawnmittal/sample-webapp:latest .
+      run: |
+        cd sample_webapp
+        docker build -t shawnmittal/sample-webapp:latest .
     - name: Run Tests
       run: docker -it shawnmittal/sample-webapp:latest python3 -m pytest
