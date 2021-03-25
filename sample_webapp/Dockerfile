@@ -1,12 +1,9 @@
-FROM tiangolo/uwsgi-nginx-flask:python3.8
+FROM tiangolo/uwsgi-nginx:python3.8-alpine
 
 # Set environment information
 ENV LISTEN_PORT=5000
 EXPOSE 5000
 ENV UWSGI_INI uwsgi.ini
-
-# Upgrade build image packages
-RUN apt-get update && apt-get upgrade -y
 
 # Install python packages
 WORKDIR /app

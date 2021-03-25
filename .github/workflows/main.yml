@@ -31,4 +31,4 @@ jobs:
         cd sample_webapp
         docker build -t shawnmittal/sample-webapp:latest .
     - name: Run Tests
-      run: docker -it shawnmittal/sample-webapp:latest python3 -m pytest
+      run: docker run -it shawnmittal/sample-webapp:latest python3 -m pytest
