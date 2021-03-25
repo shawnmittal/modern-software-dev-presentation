@@ -9,11 +9,10 @@ ENV UWSGI_INI uwsgi.ini
 RUN apt-get update && apt-get upgrade -y
 
 # Install python packages
-WORKDIR /web_app
+WORKDIR /app
 COPY requirements.txt .
 RUN pip3 install --upgrade pip && \
     pip3 install --no-cache-dir -r ./requirements.txt
 
 # Add web application to image
 COPY . .
-RUN mv ./web_app/nlp_example/nltk_data /usr/local/share/nltk_data

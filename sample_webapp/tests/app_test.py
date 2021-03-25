@@ -1,10 +1,10 @@
 import pytest
 
-from app import main
+from app import app
 
 @pytest.fixture
 def flask_app():
-    yield main.app
+    yield app.app
 
 @pytest.fixture
 def client(flask_app):
