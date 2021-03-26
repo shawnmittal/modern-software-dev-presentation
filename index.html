@@ -54,6 +54,7 @@
 							<li><a href="#/devops">DevOps</a></li>
 							<li><a href="#/containers">Containers</a></li>
 							<li><a href="#/kubernetes">Kubernetes</a></li>
+							<li><a href="#/app_build">Let's Build an App</a></li>
 						</ul>
 				</section>
 
@@ -154,7 +155,7 @@
 				</section>
 
 				<section>
-					<section>
+					<section id="app_build">
 						<h2>Lets Build an App</h2>
 					</section>
 					<section>
@@ -163,7 +164,7 @@
 							What do we want our application to do?
 						</p>
 						<p>
-							How about a website that tells us we're special? We will use Flask, a Python framework for building lightweight websites.
+							Let's write an app that returns a string after visiting a url. We will use Flask, a Python framework for building lightweight websites.
 						</p>
 					</section>
 					<section>
@@ -177,7 +178,7 @@
 
 							@app.route('/')
 							def hello_world():
-								return "Hey you, you're special!"
+								return "Here is a simple web application!"
 
 							if __name__ == '__main__':
 								app.run()
@@ -229,8 +230,11 @@
 						</code></pre>
 					</section>
 					<section>
+						<h4>Test/Release/Deploy</h4>
 						<p>
+						<small>
 							The crux of CI/CD is automation. In order to automate the build, test, deploy process, GitHub provides a CI/CD capability called GitHub Actions that allows us to define steps in our pipeline via YAML.
+						</small>
 						</p>
 						<pre class="yaml"><code data-trim data-noescape>
 							name: CI
@@ -268,6 +272,19 @@
 								- name: Run Tests
 								  run: docker run -t shawnmittal/sample-webapp:latest python3 -m pytest
 						</code></pre>
+					</section>
+					<section>
+						<p>
+							<small>Let's see the output of our automated static code analysis and tests.</small>
+						</p>
+						<img src="assets/build_output.png">
+					</section>
+					<section>
+						<h2>Operate</h2>
+						<p>
+							We've deployed our webapp!
+						</p>
+						<img src="assets/webapp.png">
 					</section>
 				</section>
 

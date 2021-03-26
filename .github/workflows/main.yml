@@ -18,7 +18,7 @@ jobs:
         sudo apt-get install python3.8 python3-pip
         sudo rm /usr/bin/python
         sudo ln -s /usr/bin/python3.8 /usr/bin/python
-    - name: Run Linter for Python Code
+    - name: Linter
       run: |
         pip3 install flake8
         sudo apt-get install flake8
